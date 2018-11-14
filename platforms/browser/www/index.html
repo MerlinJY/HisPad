@@ -6,7 +6,6 @@
         <title>Blank App</title>
     </head>
     <body>
-        <div id="text_Message"></div>
     </body>
 </html>
 <script type="text/javascript" src="cordova.js"></script>
@@ -20,9 +19,9 @@
         },
         onDeviceReady: function(){
             app.receivedEvent('deviceready');
+            cordova.InAppBrowser.open('http://www.baidu.com', '_self', 'location=no');
         },
         receivedEvent: function(id){
-            document.getElementById('text_Message').innerText += id + ';';
             console.log('Received Event: ' + id)
         }
     }

@@ -19,6 +19,7 @@
         },
         onDeviceReady: function(){
             app.receivedEvent('deviceready');
+            cordova.InAppBrowser.open('http://www.baidu.com', '_self', 'location=no');
         },
         receivedEvent: function(id){
             console.log('Received Event: ' + id)
