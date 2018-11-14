@@ -6,6 +6,7 @@
         <title>Blank App</title>
     </head>
     <body>
+        <div id="text_Message"></div>
     </body>
 </html>
 <script type="text/javascript" src="cordova.js"></script>
@@ -21,6 +22,7 @@
             app.receivedEvent('deviceready');
         },
         receivedEvent: function(id){
+            document.getElementById('text_Message').innerText += id + ';';
             console.log('Received Event: ' + id)
         }
     }
