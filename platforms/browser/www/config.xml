@@ -4,9 +4,7 @@
     <description>
         A blank PhoneGap app.
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
-    </author>
+    <author email="dgtpyy@163.com" href="http://dgswy.com">dgswy</author>
     <content src="index.html" />
     <access origin="*" />
 </widget>

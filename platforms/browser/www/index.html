@@ -6,6 +6,25 @@
         <title>Blank App</title>
     </head>
     <body>
-        <script type="text/javascript" src="cordova.js"></script>
+        <div id="text_Message"></div>
     </body>
 </html>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript">
+    var app = {
+        initialize: function(){
+            this.bindEvents();
+        },
+        bindEvents: function(){
+            document.addEventListener('deviceready', this.onDeviceReady, false);
+        },
+        onDeviceReady: function(){
+            app.receivedEvent('deviceready');
+        },
+        receivedEvent: function(id){
+            document.getElementById('text_Message').innerText += id + ';';
+            console.log('Received Event: ' + id)
+        }
+    }
+    app.initialize();
+</script>
