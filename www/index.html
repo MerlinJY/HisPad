@@ -19,7 +19,8 @@
         },
         onDeviceReady: function(){
             app.receivedEvent('deviceready');
-            cordova.InAppBrowser.open('http://www.baidu.com', '_self', 'location=no');
+            //cordova.InAppBrowser.open('http://www.baidu.com', '_self', 'location=no');
+            navigator.notification.beep(2);
         },
         receivedEvent: function(id){
             console.log('Received Event: ' + id)
