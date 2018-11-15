@@ -10,6 +10,7 @@
 </html>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript">
+    var iab = null;
     var app = {
         initialize: function(){
             this.bindEvents();
@@ -19,7 +20,8 @@
         },
         onDeviceReady: function(){
             app.receivedEvent('deviceready');
-            cordova.InAppBrowser.open('http://www.baidu.com', '_self', 'location=no');
+            //setInterval('navigator.notification.beep(1);', 3000);
+            iab = cordova.InAppBrowser.open('http://www.baidu.com', '_blank', 'location=no');
         },
         receivedEvent: function(id){
             console.log('Received Event: ' + id)
