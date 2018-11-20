@@ -20,7 +20,7 @@
             url: 'http://10.22.0.10/Module/HisPad/Default.aspx?OP=Network',
             data: '',
             success: function (data) {
-                iab = cordova.InAppBrowser.open('http://10.22.0.10/Module/HisPad/Default.aspx', '_self', 'location=no');
+                iab = cordova.InAppBrowser.open('http://10.22.0.10/Module/HisPad/Default.aspx?Serial=' + device.serial, '_self', 'location=no');
             },
             error: function () {
                 window.plugins.toast.show('网络异常，未能连接服务器！', 3000, 'center');
