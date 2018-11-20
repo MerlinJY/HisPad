@@ -32,6 +32,8 @@
             if(timeout){clearTimeout(timeout);timeout=null;}
             $.ajax({
                 type: 'GET',
+                timeout: 5000,
+                async: false,
                 url: hisurl + '?OP=Network',
                 data: '',
                 success: function (data) {
