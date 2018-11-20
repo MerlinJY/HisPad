@@ -12,6 +12,9 @@
         },
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "com.dgswy.hispad"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.dgswy.hispad"
         }
     },
     "dependent_plugins": {}

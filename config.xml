@@ -9,4 +9,5 @@
     <access origin="*" />
     <plugin name="cordova-plugin-inappbrowser" spec="~3.0.0" />
     <plugin name="cordova-plugin-dialogs" spec="~2.0.1" />
+    <preference name="Fullscreen" value="true" />
 </widget>
