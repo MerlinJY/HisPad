@@ -51,7 +51,8 @@ module.exports.metadata =
 {
     "cordova-plugin-inappbrowser": "3.0.0",
     "cordova-plugin-dialogs": "2.0.1",
-    "cordova-plugin-statusbar": "2.4.2"
+    "cordova-plugin-statusbar": "2.4.2",
+    "cordova-plugin-whitelist": "1.3.3"
 }
 // BOTTOM OF METADATA
 });

@@ -15,6 +15,9 @@
         },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.dgswy.hispad"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.dgswy.hispad"
         }
     },
     "dependent_plugins": {}
