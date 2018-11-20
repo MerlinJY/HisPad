@@ -12,7 +12,30 @@
     </body>
 </html>
 <script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript">
+    function _open_iab(){
+        //fetch("http://10.22.0.10/Module/HisPad/Default.aspx?OP=Network").then(function(response){
+        //    if(response.ok) {
+        //        iab = cordova.InAppBrowser.open('http://10.22.0.10/Module/HisPad/Default.aspx', '_self', 'location=no');
+        //    }else{
+        //        navigator.notification.alert('网络异常，未能连接服务器！');
+        //        setTimeout('_open_iab();', 5000);
+        //    }
+        //});
+        $.ajax({
+            type: 'GET',
+            url: 'http://10.22.0.10/Module/HisPad/Default.aspx?OP=Network',
+            data: '',
+            success: function (data) {
+                iab = cordova.InAppBrowser.open('http://10.22.0.10/Module/HisPad/Default.aspx', '_self', 'location=no');
+            },
+            error: function () {
+                navigator.notification.alert('网络异常，未能连接服务器！');
+                setTimeout('_open_iab();', 5000);
+            }
+        });
+    }
     var iab = null;
     var app = {
         initialize: function(){
@@ -23,8 +46,7 @@
         },
         onDeviceReady: function(){
             app.receivedEvent('deviceready');
-            //setInterval('navigator.notification.beep(1);', 3000);
-            iab = cordova.InAppBrowser.open('http://10.22.0.10/Module/HisPad/Default.aspx', '_self', 'location=no');
+            _open_iab();
         },
         receivedEvent: function(id){
             console.log('Received Event: ' + id)
