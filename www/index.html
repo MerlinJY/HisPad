@@ -29,17 +29,17 @@
 <script type="text/javascript">
     function _open_iab(){
         if(hisurl){
+            if(timeout){clearTimeout(timeout);timeout=null;}
             $.ajax({
                 type: 'GET',
                 url: hisurl + '?OP=Network',
                 data: '',
                 success: function (data) {
-                    $("#txt_hisurl").val(hisurl);
                     iab = cordova.InAppBrowser.open(hisurl + '?Serial=' + device.serial, '_self', 'location=no');
                 },
                 error: function () {
                     window.plugins.toast.show('网络异常，未能连接服务器！', 3000, 'center');
-                    setTimeout('_open_iab();', 6000);
+                    timeout = setTimeout('_open_iab();', 6000);
                 }
             });
         }else{
@@ -48,6 +48,7 @@
     }
     var iab = null;
     var hisurl = null;
+    var timeout = null;
     var app = {
         initialize: function(){
             this.bindEvents();
@@ -67,6 +68,7 @@
                 _open_iab();
             });
             hisurl = window.localStorage.getItem('hisurl');
+            $("#txt_hisurl").val(hisurl);
             _open_iab();
         },
         receivedEvent: function(id){
