@@ -21,6 +21,9 @@
         },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.dgswy.hispad"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.dgswy.hispad"
         }
     },
     "dependent_plugins": {}

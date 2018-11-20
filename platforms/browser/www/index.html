@@ -6,37 +6,48 @@
         <meta http-equiv="Content-Security-Policy" content="default-src *; 
                                                             style-src * 'self' 'unsafe-inline' 'unsafe-eval'; 
                                                             script-src * 'self' 'unsafe-inline' 'unsafe-eval';">
-        <title>Blank App</title>
+        <title>HisPad</title>
+        <style type="text/css">
+            .r{text-align:right;}.l{text-align:left;}.c{text-align:center;}
+        </style>
     </head>
     <body>
+        <table style="width:100%;table-layout:fixed;line-height:150%;">
+            <tr>
+                <td class="r" style="width:20%;">服务连接：</td>
+                <td class="l"><input type="text" id="txt_hisurl" style="width:80%;"/>&nbsp;<button id="btn_hisurl" style="width:18%;">确认</button></td>
+            </tr>
+            <tr>
+                <td class="r">快捷值：</td>
+                <td class="l"><select id="sel_hisurl" style="width:90%;"><option value="">请选择</option><option value="http://10.22.0.239">http://10.22.0.239</option><option value="http://10.22.0.10/Module/HisPad/Default.aspx">http://10.22.0.10/Module/HisPad/Default.aspx</option></select></td>
+            </tr>
+        </table>
     </body>
 </html>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript">
     function _open_iab(){
-        //fetch("http://10.22.0.10/Module/HisPad/Default.aspx?OP=Network").then(function(response){
-        //    if(response.ok) {
-        //        iab = cordova.InAppBrowser.open('http://10.22.0.10/Module/HisPad/Default.aspx', '_self', 'location=no');
-        //    }else{
-        //        navigator.notification.alert('网络异常，未能连接服务器！');
-        //        setTimeout('_open_iab();', 5000);
-        //    }
-        //});
-        $.ajax({
-            type: 'GET',
-            url: 'http://10.22.0.10/Module/HisPad/Default.aspx?OP=Network',
-            data: '',
-            success: function (data) {
-                iab = cordova.InAppBrowser.open('http://10.22.0.10/Module/HisPad/Default.aspx', '_self', 'location=no');
-            },
-            error: function () {
-                navigator.notification.alert('网络异常，未能连接服务器！');
-                setTimeout('_open_iab();', 5000);
-            }
-        });
+        if(hisurl){
+            $.ajax({
+                type: 'GET',
+                url: hisurl + '?OP=Network',
+                data: '',
+                success: function (data) {
+                    $("#txt_hisurl").val(hisurl);
+                    iab = cordova.InAppBrowser.open(hisurl + '?Serial=' + device.serial, '_self', 'location=no');
+                },
+                error: function () {
+                    window.plugins.toast.show('网络异常，未能连接服务器！', 3000, 'center');
+                    setTimeout('_open_iab();', 6000);
+                }
+            });
+        }else{
+            navigator.notification.alert('请配置服务连接！');
+        }
     }
     var iab = null;
+    var hisurl = null;
     var app = {
         initialize: function(){
             this.bindEvents();
@@ -46,6 +57,16 @@
         },
         onDeviceReady: function(){
             app.receivedEvent('deviceready');
+            //
+            $("#sel_hisurl").change(function(){
+                $("#txt_hisurl").val($(this).val());
+            });
+            $("#btn_hisurl").click(function(){
+                hisurl = $("#txt_hisurl").val();
+                window.localStorage.setItem('hisurl', hisurl);
+                _open_iab();
+            });
+            hisurl = window.localStorage.getItem('hisurl');
             _open_iab();
         },
         receivedEvent: function(id){
