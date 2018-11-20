@@ -21,7 +21,7 @@
         onDeviceReady: function(){
             app.receivedEvent('deviceready');
             //setInterval('navigator.notification.beep(1);', 3000);
-            iab = cordova.InAppBrowser.open('http://10.22.0.10/Module/HisPad/Default.aspx', '_blank', 'location=no');
+            iab = cordova.InAppBrowser.open('http://10.22.0.10/Module/HisPad/Default.aspx', '_self', 'location=no');
         },
         receivedEvent: function(id){
             console.log('Received Event: ' + id)
